@@ -1,6 +1,6 @@
 new p5()
 
-let currentTime = int(millis() / 1000)
+
 
 function setup() {
     let cnv = createCanvas(800,500);
@@ -28,6 +28,7 @@ function draw() {
         
         if (Game.lifes == 0) {
             noLoop();
+            clearInterval(interval)
             Game.balloons.length = 0;
             background(136, 220, 166);
             let finalScore = Game.score;
@@ -76,16 +77,27 @@ function draw() {
 function mousePressed() {
     if (!isLooping()) {
         loop()
+        interval = setInterval(() => {
+            Game.sendStatistics()
+        }, 5000);
         Game.score = 0
         Game.lifes = 1
     };
     Game.chekIfBalloonBurst()
 };
 
+let interval = setInterval(() => {
+    Game.sendStatistics()
+}, 5000);
+
 class Game {
     static balloons = [];
+    static commonBurst = 0;
+    static uniqBurst = 0;
+    static angryBurst = 0;
+    static lifeBurst = 0;
     static score = 0;
-    static lifes = 1
+    static lifes = 1;
 
     static addCommonBalloon() {
         let commonBalloon = new CommonBalloon('blue', 50);
@@ -120,6 +132,25 @@ class Game {
             if (Math.floor(balloon.y) <= Math.floor(balloon.size / 2)) {
                 balloon.delete(index)
             }
+        })
+    };
+
+    static sendStatistics() {
+        let statistics = {
+            CommonBurst:this.commonBurst,
+            AngryBurst: this.angryBurst,
+            LifeBurst: this.lifeBurst,
+            UniqBurst: this.uniqBurst,
+            Score:  this.score
+
+        };
+
+        fetch('/statistics', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(statistics)
         })
     }
 };
@@ -156,11 +187,12 @@ class CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1);
         Game.score += 1;
+        Game.commonBurst += 1;
     };
 
     delete(index){
         if (Math.floor(this.y) <= Math.floor(this.size / 2)) {
-            Game.balloons.splice(index, 1)
+            Game.balloons.splice(index, 1);
         };
     };
 };
@@ -173,6 +205,7 @@ class UniqBalloon extends CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1);
         Game.score += 10;
+        Game.uniqBurst += 1;
     };
 };
 
@@ -184,6 +217,7 @@ class AngryBalloon extends CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1);
         Game.score -= 10;
+        Game.angryBurst += 1;
     };
 };
 
@@ -195,6 +229,7 @@ class LifeBalloon extends CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1);
         Game.lifes += 1;
+        Game.lifeBurst += 1;
     };
 };
 

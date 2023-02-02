@@ -1,0 +1,13 @@
+{"CommonBurst":5,"AngryBurst":0,"LifeBurst":0,"UniqBurst":2,"Score":25}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
+{"CommonBurst":8,"AngryBurst":0,"LifeBurst":0,"UniqBurst":4,"Score":48}
